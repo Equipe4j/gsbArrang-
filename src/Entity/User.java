@@ -10,44 +10,35 @@ package Entity;
  * @author PC
  */
 public class User {
-    private int idUser;
-    private String nomUser;
-    private String prenomUser;
-    private String statutUser;
     
-    public User(int unId, String unNom,String unPrenom,String unStatut)
+    private String nom_utili;
+    private String MDP;
+    
+    
+    
+    public User( String unNom,String unId)
     {
-        idUser =unId;
-        nomUser = unNom;
-        prenomUser = unPrenom;
-        statutUser = unStatut;
+        nom_utili = unNom;
+        MDP = unId;
+        
+    }
+
+    /**
+     * @return the nom_utili
+     */
+    public String getNom_utili() {
+        return nom_utili;
+    }
+
+    /**
+     * @return the MDP
+     */
+    public String getMDP() {
+        return MDP;
     }
 
     /**
      * @return the idUser
      */
-    public int getIdUser() {
-        return idUser;
-    }
-
-    /**
-     * @return the nomUser
-     */
-    public String getNomUser() {
-        return nomUser;
-    }
-
-    /**
-     * @return the prenomUser
-     */
-    public String getPrenomUser() {
-        return prenomUser;
-    }
-
-    /**
-     * @return the statutUser
-     */
-    public String getStatutUser() {
-        return statutUser;
-    }
+   
 }

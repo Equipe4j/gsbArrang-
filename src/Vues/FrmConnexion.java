@@ -7,6 +7,7 @@ package Vues;
 
 import Entity.User;
 import Tools.FonctionMetier;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -106,7 +107,7 @@ public class FrmConnexion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnconnexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnconnexionMouseClicked
-        // TODO add your handling code here:
+//        // TODO add your handling code here:
         if(txtLog.getText().compareTo("") == 0)
         {
             lblerreur.setText("Saisir un login");
@@ -117,21 +118,26 @@ public class FrmConnexion extends javax.swing.JFrame {
         }
         else
         {
+            fm = new FonctionMetier();
             User unUser = fm.GetUnUser(txtLog.getText(), txtMDP.getText());
+            System.out.println(unUser.getMDP());
+            System.out.println(unUser.getNom_utili());
             if(unUser == null)
             {
                 lblerreur.setText("Identifiants incorrects");
             }
             else
-            {
-                if(unUser.getStatutUser().compareTo("admin") == 0)
-                {
+            {       
+                    
+                    System.out.println("salut toi");
                     frmMenu frm = new frmMenu();
                     frm.setVisible(true);
-                }
                 
             }
         }
+
+
+       
     }//GEN-LAST:event_btnconnexionMouseClicked
 
     /**

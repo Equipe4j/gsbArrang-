@@ -31,7 +31,7 @@ public class frmMenu extends javax.swing.JFrame {
         lblRegion = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblvisiteur.setText("VISITEUR");
         lblvisiteur.addMouseListener(new java.awt.event.MouseAdapter() {

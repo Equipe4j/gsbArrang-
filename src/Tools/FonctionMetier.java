@@ -29,11 +29,12 @@ public class FonctionMetier  implements IMetier {
             User  user = null;
         try {
             Connection cnx = ConnexionBDD.getCnx();
-            PreparedStatement ps = cnx.prepareStatement("select idUser ,nomUser, prenomUser ,StatutUser from users where loginUser ='"+login+"'and pwdUser='"+mdp+"'");
+            PreparedStatement ps = cnx.prepareStatement("select nom_utilisateur , mots_de_passe from utilisateur  where nom_utilisateur ='"+login+"'and mots_de_passe ='"+mdp+"'");
+            System.out.println(ps);
             ResultSet rs = ps.executeQuery();
-            System.out.println(rs);
+            
             rs.next();
-            user =  new User(rs.getInt("idUser"),rs.getString("nomUser"),rs.getString("prenomUser"),rs.getString("StatutUser"));
+            user =  new User(rs.getString("nom_utilisateur"),rs.getString("mots_de_passe"));
             rs.close();
             
         } catch (SQLException ex) {
