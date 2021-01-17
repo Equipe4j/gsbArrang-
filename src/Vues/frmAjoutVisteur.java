@@ -5,6 +5,13 @@
  */
 package Vues;
 
+import Entity.Exerce;
+import Entity.Laboratoire;
+import Entity.Secteur;
+import Model.ModelVisiteur;
+import Tools.FonctionMetier;
+import static Vues.frmVerifMofidVisiteur.nom;
+
 /**
  *
  * @author PC
@@ -14,6 +21,8 @@ public class frmAjoutVisteur extends javax.swing.JFrame {
     /**
      * Creates new form frmAjoutVisteur
      */
+    ModelVisiteur mdl;
+    FonctionMetier frm;
     public frmAjoutVisteur() {
         initComponents();
     }
@@ -51,7 +60,12 @@ public class frmAjoutVisteur extends javax.swing.JFrame {
         cboRegion = new javax.swing.JComboBox<>();
         cboVisiteur = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         jLabel1.setText("AJOUTER UN VISITEUR");
@@ -74,6 +88,8 @@ public class frmAjoutVisteur extends javax.swing.JFrame {
 
         jLabel10.setText("Date embauche");
 
+        txtMatricule.setEditable(false);
+
         btnAjouter.setText("Ajouter");
         btnAjouter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -89,8 +105,18 @@ public class frmAjoutVisteur extends javax.swing.JFrame {
         });
 
         cboRegion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Région", "lister", "ajouter", "modifier", " " }));
+        cboRegion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboRegionMouseClicked(evt);
+            }
+        });
 
         cboVisiteur.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Visiteur", "lister", "ajouter", "modifier", " " }));
+        cboVisiteur.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboVisiteurMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,19 +139,16 @@ public class frmAjoutVisteur extends javax.swing.JFrame {
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtMatricule, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtMatricule, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(85, 85, 85))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(cboSecteur, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(72, 72, 72))))
+                                        .addGap(3, 3, 3)
+                                        .addComponent(cboSecteur, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(44, 44, 44))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -149,7 +172,7 @@ public class frmAjoutVisteur extends javax.swing.JFrame {
                                 .addGap(55, 55, 55)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtCP, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cboLab, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(cboLab, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(166, 166, 166)
@@ -209,15 +232,106 @@ public class frmAjoutVisteur extends javax.swing.JFrame {
 
     private void btnAjouterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAjouterMouseClicked
         // TODO add your handling code here:
+        String image ="";
+        String nom = txtNom.getText();
+        String Prenom = txtPrenom.getText();
+        String cp = txtCP.getText();
+        int mat = Integer.parseInt(txtMatricule.getText());
+        String Ad = txtAdresse.getText();
+        String City = txtVille.getText();
+        String date = cboDate.getSelectedItem().toString();
+        int Labcode = frm.getLabCode(cboLab.getSelectedItem().toString());
+        System.out.println(Labcode);
+        int SecCode = frm.getSecCode(cboSecteur.getSelectedItem().toString());
+        System.out.println(SecCode);
+        frm.InsererVisiteur(mat,nom, Prenom,Ad,cp,City ,date,SecCode,Labcode,image);                
+        
         
         
     }//GEN-LAST:event_btnAjouterMouseClicked
 
     private void btnRetourMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRetourMouseClicked
         // TODO add your handling code here:
+        frmMenu frm = new frmMenu();
+        frm.setVisible(true);
         
         
     }//GEN-LAST:event_btnRetourMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+       
+       frm = new FonctionMetier();
+        for(Secteur s : frm.getlesZones()){
+            cboSecteur.addItem(s.getSc_Libel());
+        }
+        frm = new FonctionMetier();
+        for(Laboratoire l: frm.getLesLaboratoires()){
+            cboLab.addItem(l.getNom());
+        }
+         frm = new FonctionMetier();
+        for(Exerce E: frm.GetAllTravaille()){
+            cboDate.addItem(E.getPeriode());
+        }
+        
+        txtMatricule.setText(String.valueOf(frm.GetLastMatricule()));
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void cboVisiteurMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboVisiteurMouseClicked
+        // TODO add your handling code here:
+        if(cboVisiteur.getSelectedItem().toString().compareTo("Visiteur") ==0){
+            frmVisiteur frm = new frmVisiteur();
+            frm.setVisible(true);
+            this.dispose();
+        }
+        
+            if(cboVisiteur.getSelectedItem().toString().compareTo("lister") ==0){
+                frmVisiteur frm = new frmVisiteur();
+                frm.setVisible(true);
+                 this.dispose();
+            }
+           
+                if(cboVisiteur.getSelectedItem().toString().compareTo("ajouter") ==0){
+                    frmAjoutVisteur frm = new frmAjoutVisteur();
+                    frm.setVisible(true);
+                    this.dispose();
+                }
+                
+                    if(cboVisiteur.getSelectedItem().toString().compareTo("modifier") ==0){
+                        frmVerifMofidVisiteur frm = new frmVerifMofidVisiteur(nom);
+                        frm.setVisible(true);
+                        this.dispose();
+                    }
+    }//GEN-LAST:event_cboVisiteurMouseClicked
+
+    private void cboRegionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboRegionMouseClicked
+        // TODO add your handling code here:
+        
+        if(cboRegion.getSelectedItem().toString().compareTo("Région") ==0){
+            frmRegion frm = new frmRegion();
+            frm.setVisible(true);
+            this.dispose();
+        }
+        
+            if(cboRegion.getSelectedItem().toString().compareTo("lister") ==0){
+                frmRegion frm = new frmRegion();
+                frm.setVisible(true);
+                 this.dispose();
+            }
+           
+                if(cboRegion.getSelectedItem().toString().compareTo("ajouter") ==0){
+                    frmAjoutRegion frm = new frmAjoutRegion();
+                    frm.setVisible(true);
+                    this.dispose();
+                }
+                
+                    if(cboRegion.getSelectedItem().toString().compareTo("modifier") ==0){
+                        frmVerifModifRegion frm = new frmVerifModifRegion();
+                        frm.setVisible(true);
+                        this.dispose();
+                    }
+    }//GEN-LAST:event_cboRegionMouseClicked
 
     /**
      * @param args the command line arguments

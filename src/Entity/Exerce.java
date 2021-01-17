@@ -10,12 +10,12 @@ package Entity;
  * @author PC
  */
 public class Exerce {
-    private String matri;
+    private int matri;
     private String Periode;
-    private String codReg;
+    private int codReg;
     private String travCod;
     
-    public Exerce(String mat,String Per,String Reg,String role){
+    public Exerce(int mat,String Per,int Reg,String role){
         matri=mat;
         Periode=Per;
         codReg=Reg;
@@ -26,7 +26,7 @@ public class Exerce {
     /**
      * @return the matri
      */
-    public String getMatri() {
+    public int getMatri() {
         return matri;
     }
 
@@ -40,7 +40,7 @@ public class Exerce {
     /**
      * @return the codReg
      */
-    public String getCodReg() {
+    public int getCodReg() {
         return codReg;
     }
 

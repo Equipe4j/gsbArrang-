@@ -19,17 +19,19 @@ public class Visiteur {
     private String Date;
     private String secCode;
     private String labCode;
+    private String image;
     
-    public Visiteur(String mat,String nm ,String Pre,String Adrs,String CP,String Prm,String Vil,String date,String Sect,String Lab){
+    public Visiteur(String mat,String nm ,String Pre,String Adrs,String CP,String Vil,String date,String Sect,String Lab,String img){
         Matricule= mat;
         Nom=nm;
-        Prenom=Prm;
+        Prenom=Pre;
         Adresse=Adrs;
         CodP=CP;
         ville=Vil;
         Date=date;
         secCode=Sect;
         labCode=Lab;
+        image = img;
         }
 
     /**
@@ -156,6 +158,13 @@ public class Visiteur {
      */
     public void setLabCode(String labCode) {
         this.labCode = labCode;
+    }
+
+    /**
+     * @return the image
+     */
+    public String getImage() {
+        return image;
     }
     
 }

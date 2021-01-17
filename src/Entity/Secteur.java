@@ -11,4 +11,27 @@ package Entity;
  */
 public class Secteur {
     
+    private int sc_Code;
+    private String sc_Libel;
+    
+    public Secteur(int Cd,String Libel){
+        sc_Code = Cd;
+        sc_Libel= Libel;
+        
+    }
+
+    /**
+     * @return the sc_Code
+     */
+    public int getSc_Code() {
+        return sc_Code;
+    }
+
+    /**
+     * @return the sc_Libel
+     */
+    public String getSc_Libel() {
+        return sc_Libel;
+    }
+    
 }

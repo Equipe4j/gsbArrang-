@@ -5,7 +5,10 @@
  */
 package Tools;
 
+import Entity.Exerce;
+import Entity.Laboratoire;
 import Entity.Region;
+import Entity.Secteur;
 import Entity.User;
 import Entity.Visiteur;
 import java.util.ArrayList;
@@ -17,12 +20,22 @@ import java.util.ArrayList;
 public interface IMetier {
     public User GetUnUser(String login, String mdp);
     public ArrayList<Visiteur> GetAllVisiteur();
-    public void InsererVisteur(String nom, String prenom,String Adresse, String Cp, String Ville,String date,String secteur,String labo);
-    public void ModifierVisteur(String nom, String prenom,String Adresse, String Cp, String Ville,String date,String secteur,String labo);
+    public void InsererVisiteur(int num,String nom, String prenom,String Adresse, String Cp, String Ville,String date,int secteur,int labo,String image);
+    public void ModifierVisiteur(int mat,String nom, String prenom,String Adresse, String Cp, String Ville,String date,int secteur,int labo,String image);
+    public String rechercheVisiteur(String Nom);
     public ArrayList<Region> GetAllRegions();
     public void InsererRegions(String Region, String Code,String nom);
     public void ModifierRegions(String Region, String Code);
+    public ArrayList<Secteur> getlesZones();
+    public ArrayList<Laboratoire>getLesLaboratoires();
+    public int getLabCode(String Nom);
+    public int getSecCode(String nom);
+    public ArrayList<Exerce> GetAllTravaille();
     public int GetLastMatricule();
+    public String nom(String nom);
+    public ArrayList<Visiteur> nomCherche(String nom);
+    public String getNomLabCode(int labcod);
+    public  String getNomSecCode(int secCode);
     
     
 }

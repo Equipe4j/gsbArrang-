@@ -5,6 +5,8 @@
  */
 package Vues;
 
+import static Vues.frmVerifMofidVisiteur.nom;
+
 /**
  *
  * @author PC
@@ -56,8 +58,18 @@ public class frmAjoutRegion extends javax.swing.JFrame {
         btnAjouter.setText("Ajouter");
 
         cboRegion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Région", "lister", "Ajouter", "modifier", " " }));
+        cboRegion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboRegionMouseClicked(evt);
+            }
+        });
 
         cboVisiteur.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Visiteur", "Ajouter", "lister", "Modifier" }));
+        cboVisiteur.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboVisiteurMouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jLabel4.setText("Ajouter une Région");
@@ -129,6 +141,60 @@ public class frmAjoutRegion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cboVisiteurMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboVisiteurMouseClicked
+        // TODO add your handling code here:
+        if(cboVisiteur.getSelectedItem().toString().compareTo("Visiteur") ==0){
+            frmVisiteur frm = new frmVisiteur();
+            frm.setVisible(true);
+            this.dispose();
+        }
+        
+            if(cboVisiteur.getSelectedItem().toString().compareTo("lister") ==0){
+                frmVisiteur frm = new frmVisiteur();
+                frm.setVisible(true);
+                 this.dispose();
+            }
+           
+                if(cboVisiteur.getSelectedItem().toString().compareTo("ajouter") ==0){
+                    frmAjoutVisteur frm = new frmAjoutVisteur();
+                    frm.setVisible(true);
+                    this.dispose();
+                }
+                
+                    if(cboVisiteur.getSelectedItem().toString().compareTo("modifier") ==0){
+                        frmVerifMofidVisiteur frm = new frmVerifMofidVisiteur(nom);
+                        frm.setVisible(true);
+                        this.dispose();
+                    }
+    }//GEN-LAST:event_cboVisiteurMouseClicked
+
+    private void cboRegionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboRegionMouseClicked
+        // TODO add your handling code here:
+        if(cboRegion.getSelectedItem().toString().compareTo("Région") ==0){
+            frmRegion frm = new frmRegion();
+            frm.setVisible(true);
+            this.dispose();
+        }
+        
+            if(cboRegion.getSelectedItem().toString().compareTo("lister") ==0){
+                frmRegion frm = new frmRegion();
+                frm.setVisible(true);
+                 this.dispose();
+            }
+           
+                if(cboRegion.getSelectedItem().toString().compareTo("ajouter") ==0){
+                    frmAjoutRegion frm = new frmAjoutRegion();
+                    frm.setVisible(true);
+                    this.dispose();
+                }
+                
+                    if(cboRegion.getSelectedItem().toString().compareTo("modifier") ==0){
+                        frmVerifModifRegion frm = new frmVerifModifRegion();
+                        frm.setVisible(true);
+                        this.dispose();
+                    }
+    }//GEN-LAST:event_cboRegionMouseClicked
 
     /**
      * @param args the command line arguments

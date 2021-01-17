@@ -29,7 +29,7 @@
                       <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                       <Component id="btnAjouter" min="-2" pref="73" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
-                      <Component id="btnModiifer" min="-2" pref="73" max="-2" attributes="0"/>
+                      <Component id="btnModifier" min="-2" pref="73" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
@@ -39,7 +39,7 @@
                       <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" min="-2" pref="73" max="-2" attributes="0"/>
+                      <Component id="cboRegion" min="-2" pref="73" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="cboVisiteur" min="-2" pref="65" max="-2" attributes="0"/>
                   </Group>
@@ -59,7 +59,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cboRegion" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cboVisiteur" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -74,7 +74,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnAjouter" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnModiifer" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnModifier" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
                   </Group>
@@ -116,15 +116,15 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAjouterMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnModiifer">
+    <Component class="javax.swing.JButton" name="btnModifier">
       <Properties>
         <Property name="text" type="java.lang.String" value="Modifier"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnModiiferMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnModifierMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="cboRegion">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -135,6 +135,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cboRegionMouseClicked"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -151,6 +154,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cboVisiteurMouseClicked"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>

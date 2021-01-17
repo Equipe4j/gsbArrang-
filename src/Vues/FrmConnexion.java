@@ -132,6 +132,7 @@ public class FrmConnexion extends javax.swing.JFrame {
                     System.out.println("salut toi");
                     frmMenu frm = new frmMenu();
                     frm.setVisible(true);
+                    this.dispose();
                 
             }
         }
