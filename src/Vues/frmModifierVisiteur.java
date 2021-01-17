@@ -239,8 +239,18 @@ public class frmModifierVisiteur extends javax.swing.JFrame {
 
     private void btnModifierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifierMouseClicked
         // TODO add your handling code here:
+        String image = "";
+        int mat = Integer.parseInt(txtMatri.getText());
+        String nom = txtNom.getText();
+        String Prenom = txtPrenom.getText();
+        String Adresse = txtAdresse.getText();
+        String ville = txtVille.getText();
+        String cp = txtCP.getText();
+        int labocod= frm.getLabCode(cboLab.getSelectedItem().toString());
+        String date= cboDate.getSelectedItem().toString();
+        int secCode= frm.getSecCode(cboScteur.getSelectedItem().toString());
         
-        
+        frm.ModifierVisiteur(mat, nom, Prenom, Adresse,cp,ville, date, secCode,labocod,image);
     }//GEN-LAST:event_btnModifierMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
