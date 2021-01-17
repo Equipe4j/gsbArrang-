@@ -32,6 +32,7 @@ public class frmMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cboRegion = new javax.swing.JComboBox<>();
         cboVisiteur = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -42,7 +43,7 @@ public class frmMenu extends javax.swing.JFrame {
         jLabel1.setText("Bienvenue sur gsb");
         jLabel1.setOpaque(true);
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(161, 61, 172, 49);
+        jLabel1.setBounds(160, 50, 172, 49);
 
         cboRegion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Region", "lister", "ajouter", "modifier" }));
         cboRegion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -51,7 +52,7 @@ public class frmMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cboRegion);
-        cboRegion.setBounds(307, 13, 71, 20);
+        cboRegion.setBounds(310, 10, 71, 20);
 
         cboVisiteur.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Visiteur", "lister", "ajouter", "modifier" }));
         cboVisiteur.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -60,7 +61,11 @@ public class frmMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cboVisiteur);
-        cboVisiteur.setBounds(429, 13, 71, 20);
+        cboVisiteur.setBounds(390, 10, 71, 20);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Logel.jpg"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 560, 410);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -158,5 +163,6 @@ public class frmMenu extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboRegion;
     private javax.swing.JComboBox<String> cboVisiteur;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
