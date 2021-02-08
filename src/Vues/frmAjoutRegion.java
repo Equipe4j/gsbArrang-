@@ -5,7 +5,11 @@
  */
 package Vues;
 
+import Entity.Laboratoire;
+import Entity.Secteur;
+import Tools.FonctionMetier;
 import static Vues.frmVerifMofidVisiteur.nom;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,6 +46,11 @@ public class frmAjoutRegion extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setText("Nom");
 
@@ -56,6 +65,11 @@ public class frmAjoutRegion extends javax.swing.JFrame {
         btnAnnuler.setText("Annuler");
 
         btnAjouter.setText("Ajouter");
+        btnAjouter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAjouterActionPerformed(evt);
+            }
+        });
 
         cboRegion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Région", "lister", "Ajouter", "modifier", " " }));
         cboRegion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -196,6 +210,31 @@ public class frmAjoutRegion extends javax.swing.JFrame {
                     }
     }//GEN-LAST:event_cboRegionMouseClicked
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        
+        fm= new FonctionMetier();
+        for(Secteur sc:fm.getlesZones()){
+            cboSecteur.addItem(sc.getSc_Libel());
+        }
+        unMat=fm.GetlastMatriculeRegion()+1;
+        txtCode.setText(String.valueOf(unMat));
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjouterActionPerformed
+        // TODO add your handling code here:
+        if(txtNom.getText().compareTo("")==0){
+            JOptionPane.showMessageDialog(this, "Veuillez saisir un nom ");
+        }
+        else{
+            unNom=txtNom.getText();
+            unMat=Integer.parseInt(txtCode.getText());
+            unNomSecteur=cboSecteur.getSelectedItem().toString();
+            unCodeSecteur = fm.getSecCode(unNomSecteur);
+          fm.InsererRegions(unMat, unCodeSecteur, unNom);
+         }
+    }//GEN-LAST:event_btnAjouterActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -230,7 +269,10 @@ public class frmAjoutRegion extends javax.swing.JFrame {
             }
         });
     }
-
+    FonctionMetier fm ;
+    Laboratoire lb;
+    int unMat,unCodeSecteur;
+    String unNom,unNomSecteur;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAjouter;
     private javax.swing.JButton btnAnnuler;

@@ -24,9 +24,8 @@ public interface IMetier {
     public void ModifierVisiteur(int mat,String nom, String prenom,String Adresse, String Cp, String Ville,String date,int secteur,int labo,String image);
     public String rechercheVisiteur(String Nom);
     public ArrayList<Region> GetAllRegions();
-    public void InsererRegions(String Region, String Code,String nom);
-    public void ModifierRegions(String Region, String Code);
-    public ArrayList<Secteur> getlesZones();
+    public void InsererRegions(int Region, int Code,String nom);
+    public void ModifierRegions(int id,String nomRegion, int Code);
     public ArrayList<Laboratoire>getLesLaboratoires();
     public int getLabCode(String Nom);
     public int getSecCode(String nom);
@@ -36,6 +35,11 @@ public interface IMetier {
     public ArrayList<Visiteur> nomCherche(String nom);
     public String getNomLabCode(int labcod);
     public  String getNomSecCode(int secCode);
+    public int GetlastMatriculeRegion();
+    public Region getRegionByNom(String unNom);
+    public ArrayList<Secteur> getlesZones();
+    
+    
     
     
 }

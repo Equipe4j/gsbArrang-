@@ -5,6 +5,8 @@
  */
 package Vues;
 
+import Model.ModelSecteur;
+import Tools.FonctionMetier;
 import static Vues.frmVerifMofidVisiteur.nom;
 
 /**
@@ -16,6 +18,8 @@ public class frmRegion extends javax.swing.JFrame {
     /**
      * Creates new form frmRegion
      */
+    FonctionMetier frm;
+    Model.ModelSecteur mdl;
     public frmRegion() {
         initComponents();
     }
@@ -31,14 +35,16 @@ public class frmRegion extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRegions = new javax.swing.JTable();
-        btnAjouter = new javax.swing.JButton();
-        btnmodifier = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        btnAnnuler = new javax.swing.JButton();
         cboRegion = new javax.swing.JComboBox<>();
         cboVisiteur = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         tblRegions.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -50,34 +56,8 @@ public class frmRegion extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblRegions);
 
-        btnAjouter.setText("Ajouter");
-        btnAjouter.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAjouterMouseClicked(evt);
-            }
-        });
-        btnAjouter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAjouterActionPerformed(evt);
-            }
-        });
-
-        btnmodifier.setText("Modifier");
-        btnmodifier.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnmodifierMouseClicked(evt);
-            }
-        });
-
         jLabel4.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jLabel4.setText("Les Regions");
-
-        btnAnnuler.setText("Annuler");
-        btnAnnuler.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAnnulerMouseClicked(evt);
-            }
-        });
 
         cboRegion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Région", "lister", "ajouter", "modifier", " " }));
         cboRegion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -107,13 +87,6 @@ public class frmRegion extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cboVisiteur, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(btnAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addComponent(btnmodifier, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(btnAnnuler, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(83, 83, 83)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(84, Short.MAX_VALUE))
@@ -132,39 +105,11 @@ public class frmRegion extends javax.swing.JFrame {
                             .addComponent(cboVisiteur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAjouter)
-                    .addComponent(btnmodifier)
-                    .addComponent(btnAnnuler))
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(184, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAjouterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAjouterMouseClicked
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_btnAjouterMouseClicked
-
-    private void btnmodifierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnmodifierMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnmodifierMouseClicked
-
-    private void btnAnnulerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnnulerMouseClicked
-        // TODO add your handling code here:
-        frmMenu frm = new frmMenu();
-        frm.setVisible(true);
-    }//GEN-LAST:event_btnAnnulerMouseClicked
-
-    private void btnAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjouterActionPerformed
-        // TODO add your handling code here:
-        frmAjoutRegion frm = new frmAjoutRegion();
-        frm.setVisible(true);
-    }//GEN-LAST:event_btnAjouterActionPerformed
 
     private void cboRegionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboRegionMouseClicked
         // TODO add your handling code here:
@@ -220,6 +165,15 @@ public class frmRegion extends javax.swing.JFrame {
                     }
     }//GEN-LAST:event_cboVisiteurMouseClicked
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        frm = new FonctionMetier();
+        mdl = new ModelSecteur();
+        mdl.loadDatas(frm.GetAllRegions());
+        tblRegions.setModel(mdl);
+        
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -256,9 +210,6 @@ public class frmRegion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAjouter;
-    private javax.swing.JButton btnAnnuler;
-    private javax.swing.JButton btnmodifier;
     private javax.swing.JComboBox<String> cboRegion;
     private javax.swing.JComboBox<String> cboVisiteur;
     private javax.swing.JLabel jLabel4;

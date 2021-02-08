@@ -5,7 +5,11 @@
  */
 package Vues;
 
+import Entity.Region;
+import Entity.Secteur;
+import Tools.FonctionMetier;
 import static Vues.frmVerifMofidVisiteur.nom;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,7 +20,9 @@ public class frmModifRegion extends javax.swing.JFrame {
     /**
      * Creates new form frmModifRegion
      */
-    public frmModifRegion() {
+     static Region laRegion;
+    public frmModifRegion(Region uneRegion) {
+        laRegion=uneRegion;
         initComponents();
     }
 
@@ -42,6 +48,11 @@ public class frmModifRegion extends javax.swing.JFrame {
         cboVisiteur = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         jLabel1.setText("Modifier Une Région");
@@ -55,6 +66,11 @@ public class frmModifRegion extends javax.swing.JFrame {
         txtCodeReg.setEnabled(false);
 
         btnModifier.setText("Modifier");
+        btnModifier.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModifierMouseClicked(evt);
+            }
+        });
         btnModifier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModifierActionPerformed(evt);
@@ -217,6 +233,36 @@ public class frmModifRegion extends javax.swing.JFrame {
                     }
     }//GEN-LAST:event_cboRegionMouseClicked
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        
+        fm=new FonctionMetier();
+        txtNom.setText(laRegion.getRegNom());
+        txtCodeReg.setText(String.valueOf(laRegion.getCodReg()));
+        unNomSecteur=fm.getNomSecCode(laRegion.getSecReg());
+        cboCodeSec.addItem(unNomSecteur);
+        
+        for(Secteur sc: fm.getlesZones()){
+            cboCodeSec.addItem(sc.getSc_Libel());
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnModifierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifierMouseClicked
+        // TODO add your handling code here:
+        
+        
+        if(txtNom.getText().compareTo("")==0){
+            JOptionPane.showMessageDialog(this, "veuillez saisir un nom");
+        }
+        else{
+        unNom=txtNom.getText();
+        unId=Integer.parseInt(txtCodeReg.getText());
+        unNomSec=cboCodeSec.getSelectedItem().toString();
+        unIdSec=fm.getSecCode(unNomSec);
+        fm.ModifierRegions(unId, unNom,unIdSec);
+        } 
+    }//GEN-LAST:event_btnModifierMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -247,11 +293,13 @@ public class frmModifRegion extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmModifRegion().setVisible(true);
+                new frmModifRegion(laRegion).setVisible(true);
             }
         });
     }
-
+    FonctionMetier fm;
+    String unNomSecteur, unNom, unNomSec;
+    int unId, unIdSec;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnnuler;
     private javax.swing.JButton btnModifier;

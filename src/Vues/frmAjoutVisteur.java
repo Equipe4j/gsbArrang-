@@ -11,6 +11,8 @@ import Entity.Secteur;
 import Model.ModelVisiteur;
 import Tools.FonctionMetier;
 import static Vues.frmVerifMofidVisiteur.nom;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -54,11 +56,11 @@ public class frmAjoutVisteur extends javax.swing.JFrame {
         txtCP = new javax.swing.JTextField();
         btnAjouter = new javax.swing.JButton();
         btnRetour = new javax.swing.JButton();
-        cboDate = new javax.swing.JComboBox<>();
         cboLab = new javax.swing.JComboBox<>();
         cboSecteur = new javax.swing.JComboBox<>();
         cboRegion = new javax.swing.JComboBox<>();
         cboVisiteur = new javax.swing.JComboBox<>();
+        dtaDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -123,14 +125,21 @@ public class frmAjoutVisteur extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(166, 166, 166)
+                .addComponent(jLabel1)
+                .addGap(28, 28, 28)
+                .addComponent(cboRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(cboVisiteur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(18, 18, 18)
-                        .addComponent(cboDate, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,11 +154,16 @@ public class frmAjoutVisteur extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(3, 3, 3)
                                         .addComponent(cboSecteur, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(44, 44, 44))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)))
+                                .addGap(44, 44, 44)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel9))
+                                .addGap(52, 52, 52)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cboLab, 0, 93, Short.MAX_VALUE)
+                                    .addComponent(txtCP)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
@@ -162,26 +176,14 @@ public class frmAjoutVisteur extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGap(33, 33, 33)
                                         .addComponent(btnAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtVille, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtAdresse, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel9))
-                                .addGap(55, 55, 55)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCP, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cboLab, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtAdresse, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                                    .addComponent(txtVille)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(dtaDate, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(jLabel1)
-                .addGap(28, 28, 28)
-                .addComponent(cboRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(cboVisiteur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,11 +218,11 @@ public class frmAjoutVisteur extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(cboLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboSecteur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(cboDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(dtaDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAjouter)
                     .addComponent(btnRetour))
@@ -232,19 +234,63 @@ public class frmAjoutVisteur extends javax.swing.JFrame {
 
     private void btnAjouterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAjouterMouseClicked
         // TODO add your handling code here:
-        String image ="";
+        if(txtNom.getText().compareTo("")==0){
+            JOptionPane.showMessageDialog(this,"entrer un nom");
+        }
+        else{
+            if(txtPrenom.getText().compareTo("")==0){
+            JOptionPane.showMessageDialog(this,"entrer un prenom");
+            }
+            else{
+                if(txtMatricule.getText().compareTo("")==0){
+            JOptionPane.showMessageDialog(this,"entrer un matricule");
+            }else{
+                 if(txtAdresse.getText().compareTo("")==0){
+            JOptionPane.showMessageDialog(this,"entrer une adresse");   
+                }
+                 else{
+                     if(txtVille.getText().compareTo("")==0){
+                        JOptionPane.showMessageDialog(this,"entrer un nom");
+                     }else{
+                         if(txtCP.getText().compareTo("")==0){
+                        JOptionPane.showMessageDialog(this,"entrer un code postal");
+                     }else{
+                               String image ="";
         String nom = txtNom.getText();
         String Prenom = txtPrenom.getText();
         String cp = txtCP.getText();
         int mat = Integer.parseInt(txtMatricule.getText());
         String Ad = txtAdresse.getText();
         String City = txtVille.getText();
-        String date = cboDate.getSelectedItem().toString();
+//        String date = cboDate.getSelectedItem().toString();
+        
+        SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
+        
+         String date = format.format( dtaDate.getDate()); 
+        
+        
+        
         int Labcode = frm.getLabCode(cboLab.getSelectedItem().toString());
         System.out.println(Labcode);
         int SecCode = frm.getSecCode(cboSecteur.getSelectedItem().toString());
         System.out.println(SecCode);
-        frm.InsererVisiteur(mat,nom, Prenom,Ad,cp,City ,date,SecCode,Labcode,image);                
+        
+        frm.InsererVisiteur(mat,nom, Prenom,Ad,cp,City ,date,SecCode,Labcode,image); 
+                         }
+                             
+                         
+                     }
+                 }
+            
+                    
+            }
+                     
+                    
+             
+        }
+        }
+        
+                     
         
         
         
@@ -269,13 +315,10 @@ public class frmAjoutVisteur extends javax.swing.JFrame {
         for(Laboratoire l: frm.getLesLaboratoires()){
             cboLab.addItem(l.getNom());
         }
-         frm = new FonctionMetier();
-        for(Exerce E: frm.GetAllTravaille()){
-            cboDate.addItem(E.getPeriode());
-        }
+         
         
         txtMatricule.setText(String.valueOf(frm.GetLastMatricule()));
-        
+        txtMatricule.setEnabled(false);
     }//GEN-LAST:event_formWindowOpened
 
     private void cboVisiteurMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboVisiteurMouseClicked
@@ -371,11 +414,11 @@ public class frmAjoutVisteur extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAjouter;
     private javax.swing.JButton btnRetour;
-    private javax.swing.JComboBox<String> cboDate;
     private javax.swing.JComboBox<String> cboLab;
     private javax.swing.JComboBox<String> cboRegion;
     private javax.swing.JComboBox<String> cboSecteur;
     private javax.swing.JComboBox<String> cboVisiteur;
+    private com.toedter.calendar.JDateChooser dtaDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

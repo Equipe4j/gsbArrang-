@@ -39,7 +39,7 @@ public class ModelSecteur extends AbstractTableModel{
         rows = new Vector<>();
        nomsColonnes = new String[]{"Region","Secteur","nom"};
        for(Region reg :lesRegions ){
-           rows.add(new String[]{reg.getCodReg(),reg.getSecReg(),reg.getRegNom()});
+           rows.add(new String[]{String.valueOf(reg.getCodReg()),String.valueOf(reg.getSecReg()),reg.getRegNom()});
        }
        fireTableDataChanged();
     }

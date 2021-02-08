@@ -10,11 +10,11 @@ package Entity;
  * @author PC
  */
 public class Region {
-    private String codReg;
-    private String secReg;
+    private int codReg;
+    private int secReg;
     private String regNom;
     
-    public Region(String reg,String sec,String nom){
+    public Region(int reg,int sec,String nom){
         codReg=reg;
         secReg=sec;
         regNom=nom;
@@ -25,14 +25,14 @@ public class Region {
     /**
      * @return the codReg
      */
-    public String getCodReg() {
+    public int getCodReg() {
         return codReg;
     }
 
     /**
      * @return the secReg
      */
-    public String getSecReg() {
+    public int getSecReg() {
         return secReg;
     }
 
@@ -42,5 +42,6 @@ public class Region {
     public String getRegNom() {
         return regNom;
     }
+    
     
 }

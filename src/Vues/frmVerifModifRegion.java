@@ -5,6 +5,8 @@
  */
 package Vues;
 
+import Entity.Region;
+import Tools.FonctionMetier;
 import static Vues.frmVerifMofidVisiteur.nom;
 
 /**
@@ -16,6 +18,8 @@ public class frmVerifModifRegion extends javax.swing.JFrame {
     /**
      * Creates new form frmVerifModifRegion
      */
+        FonctionMetier frm,frmi;
+        static String nom;
     public frmVerifModifRegion() {
         initComponents();
     }
@@ -38,6 +42,11 @@ public class frmVerifModifRegion extends javax.swing.JFrame {
         btnAnnuler = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         jLabel1.setText("Modifier une Région");
@@ -119,7 +128,9 @@ public class frmVerifModifRegion extends javax.swing.JFrame {
 
     private void btnChercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChercherActionPerformed
         // TODO add your handling code here:
-        frmModifRegion frm = new frmModifRegion();
+        unNomReg=cboReg.getSelectedItem().toString();
+        uneRegion=fm.getRegionByNom(unNomReg);
+        frmModifRegion frm = new frmModifRegion(uneRegion);
         frm.setVisible(true);
     }//GEN-LAST:event_btnChercherActionPerformed
 
@@ -178,6 +189,14 @@ public class frmVerifModifRegion extends javax.swing.JFrame {
                     }
     }//GEN-LAST:event_cboRegionMouseClicked
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        fm=new FonctionMetier();
+        for(Region reg :fm.GetAllRegions()){
+            cboReg.addItem(reg.getRegNom());
+        }
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -208,11 +227,13 @@ public class frmVerifModifRegion extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmVerifModifRegion().setVisible(true);
+                new frmVerifMofidVisiteur(nom).setVisible(true);;
             }
         });
     }
-
+    FonctionMetier fm;
+    String unNomReg;
+    Region uneRegion;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnnuler;
     private javax.swing.JButton btnChercher;

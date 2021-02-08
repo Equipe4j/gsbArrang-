@@ -69,19 +69,47 @@ public class FonctionMetier  implements IMetier {
 
     @Override
     public ArrayList<Region> GetAllRegions() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          ArrayList<Region> mesRegion= new ArrayList<>();
+        try {
+            Connection cnx= ConnexionBDD.getCnx();
+            PreparedStatement stm=cnx.prepareStatement("select * from region");
+            ResultSet rs=stm.executeQuery();
+            while(rs.next()){
+               Region uneRegions= new Region(rs.getInt(1), rs.getInt(2), rs.getString(3));
+               mesRegion.add(uneRegions);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return mesRegion;
     }
 
     @Override
-    public void InsererRegions(String Region, String Code, String nom) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void InsererRegions(int Region, int Code, String nom) {
+       try {
+            Connection cnx= ConnexionBDD.getCnx();
+            PreparedStatement stm=cnx.prepareStatement("insert into region values ("+Region+",'"+Code+"','"+nom+"')");
+            stm.executeUpdate();
+            stm.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
     }
 
     @Override
-    public void ModifierRegions(String Region, String Code) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void ModifierRegions(int id, String nomRegion, int Code) {
+    try {
+            Connection cnx= ConnexionBDD.getCnx();
+            PreparedStatement stm=cnx.prepareStatement("update region set rg_nom='"+nomRegion+"', sc_code="+Code+" where rg_code="+id);
+            System.out.println(stm);
+            stm.executeUpdate();
+            stm.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }    
     }
-
     @Override
     public int GetLastMatricule() {
             int numMat=0;
@@ -321,6 +349,42 @@ public class FonctionMetier  implements IMetier {
             Logger.getLogger(FonctionMetier.class.getName()).log(Level.SEVERE, null, ex);
         }
             return codi;
+    }
+
+   
+
+    @Override
+    public int GetlastMatriculeRegion() {
+      int unMat = 0;
+        try {
+            Connection cnx = ConnexionBDD.getCnx();
+            PreparedStatement stm;
+            stm = cnx.prepareStatement("select max(rg_code) from region");
+            ResultSet rs=stm.executeQuery();
+            rs.next();
+            unMat=rs.getInt(1);
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unMat  ;     
+    }
+
+    @Override
+    public Region getRegionByNom(String unNom) {
+              Region uneRegion = null;
+        try {
+            Connection cnx= ConnexionBDD.getCnx();
+            PreparedStatement stm=cnx.prepareStatement("select * from region where rg_nom='"+unNom+"'");
+            ResultSet rs=stm.executeQuery();
+            while(rs.next()){
+              uneRegion= new Region(rs.getInt(1), rs.getInt(2), rs.getString(3));
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return uneRegion;
     }
             
                 
