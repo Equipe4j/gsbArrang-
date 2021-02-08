@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author PC
  */
-public class ModelSecteur extends AbstractTableModel{
+public class ModelRegion extends AbstractTableModel{
     private String[] nomsColonnes = {"Region","Secteur","Nom"};
     private Vector<String[]> rows;
 
@@ -40,6 +40,16 @@ public class ModelSecteur extends AbstractTableModel{
        nomsColonnes = new String[]{"Region","Secteur","nom"};
        for(Region reg :lesRegions ){
            rows.add(new String[]{String.valueOf(reg.getCodReg()),String.valueOf(reg.getSecReg()),reg.getRegNom()});
+       }
+       fireTableDataChanged();
+    }
+    
+    public void loadDatas2(ArrayList<Region>lesRegions)
+    {
+        rows = new Vector<>();
+       nomsColonnes = new String[]{"Region"};
+       for(Region reg :lesRegions ){
+           rows.add(new String[]{reg.getRegNom()});
        }
        fireTableDataChanged();
     }

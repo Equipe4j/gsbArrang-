@@ -5,7 +5,7 @@
  */
 package Vues;
 
-import Model.ModelSecteur;
+import Model.ModelRegion;
 import Tools.FonctionMetier;
 import static Vues.frmVerifMofidVisiteur.nom;
 
@@ -19,7 +19,7 @@ public class frmRegion extends javax.swing.JFrame {
      * Creates new form frmRegion
      */
     FonctionMetier frm;
-    Model.ModelSecteur mdl;
+    Model.ModelRegion mdl;
     public frmRegion() {
         initComponents();
     }
@@ -168,7 +168,7 @@ public class frmRegion extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         frm = new FonctionMetier();
-        mdl = new ModelSecteur();
+        mdl = new ModelRegion();
         mdl.loadDatas(frm.GetAllRegions());
         tblRegions.setModel(mdl);
         
